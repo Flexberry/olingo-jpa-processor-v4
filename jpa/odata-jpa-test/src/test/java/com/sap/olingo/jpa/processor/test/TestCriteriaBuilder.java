@@ -46,6 +46,7 @@ public class TestCriteriaBuilder {
   private EntityManager em;
   private CriteriaBuilder cb;
 
+  @Disabled
   @BeforeAll
   public static void setupClass() {
     Map<String, Object> properties = new HashMap<>();
@@ -54,6 +55,7 @@ public class TestCriteriaBuilder {
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
   }
 
+  @Disabled
   @BeforeEach
   public void setup() {
     em = emf.createEntityManager();
