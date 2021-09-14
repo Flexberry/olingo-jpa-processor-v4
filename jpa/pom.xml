@@ -184,7 +184,6 @@
 		<module>odata-jpa-metadata</module>
 		<module>odata-jpa-processor</module>
 		<module>odata-jpa-coverage</module>
-		<module>odata-jpa-test</module>
 		<module>odata-jpa-spring-support</module>
 	</modules>
 	<build>
