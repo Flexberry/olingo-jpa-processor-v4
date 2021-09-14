@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.flexberry</groupId>
-	<artifactId>flexberry-odata-jpa</artifactId>
+	<artifactId>odata-jpa</artifactId>
 	<version>0.3.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>flexberry-odata-jpa</name>
+	<name>odata-jpa</name>
 	<url>https://github.com/Flexberry/olingo-jpa-processor-v4</url>
 	<description>Library for work with data, based on odata. Library provides tools for build servlets backend</description>
 	

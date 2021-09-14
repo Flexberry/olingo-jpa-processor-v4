@@ -6,13 +6,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>net.flexberry</groupId>
-		<artifactId>flexberry-odata-jpa</artifactId>
+		<artifactId>odata-jpa</artifactId>
 		<version>0.3.9-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>flexberry-odata-jpa-test</artifactId>
+	<artifactId>odata-jpa-test</artifactId>
 
-	<name>flexberry-odata-jpa-test</name>
+	<name>odata-jpa-test</name>
 	<url>https://github.com/Flexberry/olingo-jpa-processor-v4</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

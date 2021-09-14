@@ -6,11 +6,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>net.flexberry</groupId>
-		<artifactId>flexberry-odata-jpa</artifactId>
+		<artifactId>odata-jpa</artifactId>
 		<version>0.3.9-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>flexberry-odata-jpa-processor</artifactId>
+	<artifactId>odata-jpa-processor</artifactId>
 
 	<name>flexberry-odata-jpa-processor</name>
 	<url>https://github.com/Flexberry/olingo-jpa-processor-v4</url>
