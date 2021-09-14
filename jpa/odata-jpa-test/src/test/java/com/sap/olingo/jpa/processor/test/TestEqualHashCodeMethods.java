@@ -24,6 +24,7 @@ import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.Type.PersistenceType;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -171,6 +172,7 @@ public abstract class TestEqualHashCodeMethods {
     return setter;
   }
 
+  @Disabled
   @ParameterizedTest
   @MethodSource("equalInstances")
   public void testEqualsReturnsTrue(final Entry<Object, List<Object>> instance) {
@@ -180,6 +182,7 @@ public abstract class TestEqualHashCodeMethods {
 
   }
 
+  @Disabled
   @ParameterizedTest
   @MethodSource("notEqualInstances")
   public void testEqualsReturnsFalse(final Entry<Object, List<Object>> instance) {
@@ -190,6 +193,7 @@ public abstract class TestEqualHashCodeMethods {
 
   }
 
+  @Disabled
   @ParameterizedTest
   @MethodSource("equalInstances")
   public void tesHashCodeReturnsValue(final Entry<Object, List<Object>> instance) {

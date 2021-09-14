@@ -38,6 +38,7 @@ public class TestFunctions {
   private static EntityManagerFactory emf;
   private static DataSource ds;
 
+  @Disabled
   @BeforeAll
   public static void setupClass() {
 
@@ -53,6 +54,7 @@ public class TestFunctions {
 
   private CriteriaBuilder cb;
 
+  @Disabled
   @BeforeEach
   public void setup() {
     em = emf.createEntityManager();

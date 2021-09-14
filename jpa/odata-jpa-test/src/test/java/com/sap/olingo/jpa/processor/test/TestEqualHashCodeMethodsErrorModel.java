@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import org.junit.jupiter.api.BeforeAll;
 
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
+import org.junit.jupiter.api.Disabled;
 
 /**
  * @author Oliver Grande
@@ -19,6 +20,7 @@ public class TestEqualHashCodeMethodsErrorModel extends TestEqualHashCodeMethods
   private static final String PUNIT_NAME = "error";
   private static final String ENTITY_MANAGER_DATA_SOURCE = "javax.persistence.nonJtaDataSource";
 
+  @Disabled
   @BeforeAll
   public static void setupClass() {
     Map<String, Object> properties = new HashMap<>();
