@@ -63,6 +63,7 @@ public class TestCriteriaBuilder {
   }
 
   @SuppressWarnings("unchecked")
+  @Disabled
   @Test
   public void testSubstringWithExperession() {
     CriteriaQuery<Tuple> adminQ = cb.createTupleQuery();
@@ -110,6 +111,7 @@ public class TestCriteriaBuilder {
   }
 
   @SuppressWarnings("unchecked")
+  @Disabled
   @Test
   public void testSubSelectTopOrderBy() {
     // https://stackoverflow.com/questions/9321916/jpa-criteriabuilder-how-to-use-in-comparison-operator
@@ -142,6 +144,7 @@ public class TestCriteriaBuilder {
     tq.getResultList();
   }
 
+  @Disabled
   @Test
   public void testFilterOnPrimitiveCollectionAttribute() {
     CriteriaQuery<Tuple> orgQ = cb.createTupleQuery();
@@ -153,6 +156,7 @@ public class TestCriteriaBuilder {
     assertEquals(1, act.size());
   }
 
+  @Disabled
   @Test
   public void testFilterOnEmbeddedCollectionAttribute() {
     CriteriaQuery<Tuple> pQ = cb.createTupleQuery();
@@ -164,6 +168,7 @@ public class TestCriteriaBuilder {
     assertEquals(1, act.size());
   }
 
+  @Disabled
   @Test
   public void testExpandCount() {
     CriteriaQuery<Tuple> count = cb.createTupleQuery();
@@ -177,6 +182,7 @@ public class TestCriteriaBuilder {
     tq.getFirstResult();
   }
 
+  @Disabled
   @Test
   public void testAnd() {
     CriteriaQuery<Tuple> count = cb.createTupleQuery();
@@ -231,6 +237,7 @@ public class TestCriteriaBuilder {
     System.out.println(act.size());
   }
 
+  @Disabled
   @Test
   public void testInClauseSimpleKey() {
 
@@ -249,6 +256,7 @@ public class TestCriteriaBuilder {
     Assertions.assertEquals(1, act.size());
   }
 
+  @Disabled
   @Test
   public void testEntityTransaction() {
     Assertions.assertFalse(em.getTransaction().isActive());
@@ -257,6 +265,7 @@ public class TestCriteriaBuilder {
   }
 
   // @Disabled
+  @Disabled
   @Test
   public void testInClauseComplexKey() {
 
