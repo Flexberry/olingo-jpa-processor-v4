@@ -18,22 +18,22 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>net.flexberry</groupId>
 			<artifactId>odata-jpa-annotation</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>net.flexberry</groupId>
 			<artifactId>odata-jpa-metadata</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>net.flexberry</groupId>
 			<artifactId>odata-jpa-processor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
         <dependency>
-            <groupId>com.sap.olingo</groupId>
+            <groupId>net.flexberry</groupId>
             <artifactId>odata-jpa-test</artifactId>
             <version>${project.version}</version>
         </dependency>		

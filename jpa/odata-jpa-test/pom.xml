@@ -35,7 +35,7 @@
 			<version>2.27.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>net.flexberry</groupId>
 			<artifactId>odata-jpa-annotation</artifactId>
 			<version>${project.version}</version>
 		</dependency>
