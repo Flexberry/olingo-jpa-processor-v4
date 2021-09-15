@@ -3,7 +3,7 @@
 
 	<groupId>net.flexberry</groupId>
 	<artifactId>odata-jpa</artifactId>
-	<version>0.3.10-SNAPSHOT</version>
+	<version>0.3.10</version>
 	<packaging>pom</packaging>
 
 	<name>odata-jpa</name>
@@ -78,7 +78,16 @@
 				<vulas.core.appContext.version>${project.version}</vulas.core.appContext.version>
 			</properties>
 			<build>
-				<plugins>
+				<plugins>				
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.0-beta-8</version>
+						<configuration>
+							<useReleaseProfile>false</useReleaseProfile>
+							<goals>deploy</goals>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>com.sap.research.security.vulas</groupId>
 						<artifactId>plugin-maven</artifactId>

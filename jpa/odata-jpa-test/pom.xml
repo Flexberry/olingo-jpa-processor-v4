@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>net.flexberry</groupId>
 		<artifactId>odata-jpa</artifactId>
-		<version>0.3.10-SNAPSHOT</version>
+		<version>0.3.10</version>
 	</parent>
 
 	<artifactId>odata-jpa-test</artifactId>
