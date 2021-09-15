@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>net.flexberry</groupId>
 		<artifactId>odata-jpa</artifactId>
-		<version>0.3.10</version>
+		<version>0.3.11-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>odata-jpa-coverage</artifactId>
@@ -66,8 +66,4 @@
 		</plugins>
 	</build>
 	<packaging>pom</packaging>
-
-  <scm>
-    <tag>odata-jpa-0.3.10</tag>
-  </scm>
 </project>
