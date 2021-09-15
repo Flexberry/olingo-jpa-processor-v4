@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>net.flexberry</groupId>
 		<artifactId>odata-jpa</artifactId>
-		<version>0.3.11-SNAPSHOT</version>
+		<version>0.3.9-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>odata-jpa-processor</artifactId>
