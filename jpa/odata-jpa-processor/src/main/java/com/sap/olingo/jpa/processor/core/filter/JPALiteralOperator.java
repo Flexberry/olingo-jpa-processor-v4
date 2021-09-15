@@ -16,6 +16,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import com.sap.olingo.jpa.processor.core.query.ExpressionUtil;
 
+import java.util.UUID;
+
 public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
   private final Literal literal;
   private final OData odata;
@@ -43,8 +45,13 @@ public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
     try {
 
       final Class<?> defaultType = edmType.getDefaultType();
-      final Constructor<?> c = defaultType.getConstructor(String.class);
-      return c.newInstance(edmType.fromUriLiteral(literalText));
+
+      if (defaultType.isInstance(UUID.class)) {
+        return UUID.fromString(literal.toString());
+      } else {
+        final Constructor<?> c = defaultType.getConstructor(String.class);
+        return c.newInstance(edmType.fromUriLiteral(literalText));
+      }
     } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
         | EdmPrimitiveTypeException | InstantiationException | NoSuchMethodException | SecurityException e) {
       throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);

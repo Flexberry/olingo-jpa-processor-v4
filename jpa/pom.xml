@@ -193,12 +193,7 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>3.0.0-M3</version>
 					<configuration>
-						<properties>
-							<configurationParameters>
-								junit.platform.output.capture.stdout =
-								false
-							</configurationParameters>
-						</properties>
+						<skipTests>true</skipTests>
 						<reuseForks>false</reuseForks>
 						<forkCount>0</forkCount>
 					</configuration>
