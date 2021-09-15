@@ -21,7 +21,6 @@ import java.util.stream.Stream;
 
 import org.hsqldb.jdbc.JDBCClob;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -151,13 +150,11 @@ public class TestStandardMethodsOfTestModel {
         arguments(com.sap.olingo.jpa.processor.core.errormodel.PersonDeepCollectionProtected.class));
   }
 
-  @Disabled
   @BeforeEach
   public void setup() throws SQLException {
     expClob = new JDBCClob("Test");
   }
 
-  @Disabled
   @ParameterizedTest
   @MethodSource({ "testModelEntities", "testErrorEntities" })
   public void testGetterReturnsSetPrimitiveValue(final Class<?> clazz) throws NoSuchMethodException, SecurityException,
@@ -185,7 +182,6 @@ public class TestStandardMethodsOfTestModel {
     }
   }
 
-  @Disabled
   @ParameterizedTest
   @MethodSource({ "testModelEntities", "testErrorEntities" })
   public void testToStringReturnsValue(final Class<?> clazz) throws NoSuchMethodException, SecurityException,
@@ -197,7 +193,6 @@ public class TestStandardMethodsOfTestModel {
     assertFalse(instanze.toString().isEmpty());
   }
 
-  @Disabled
   @ParameterizedTest
   @MethodSource({ "testModelEntities", "testErrorEntities" })
   public void testHashValueReturnsValue(final Class<?> clazz) throws NoSuchMethodException, SecurityException,

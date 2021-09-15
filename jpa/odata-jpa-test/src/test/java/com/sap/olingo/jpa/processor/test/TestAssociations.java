@@ -18,7 +18,6 @@ import javax.persistence.criteria.Root;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
@@ -35,7 +34,6 @@ public class TestAssociations {
   private EntityManager em;
   private CriteriaBuilder cb;
 
-  @Disabled
   @BeforeAll
   public static void setupClass() {
     Map<String, Object> properties = new HashMap<>();
@@ -44,14 +42,12 @@ public class TestAssociations {
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
   }
 
-  @Disabled
   @BeforeEach
   public void setup() {
     em = emf.createEntityManager();
     cb = em.getCriteriaBuilder();
   }
 
-  @Disabled
   @Test
   public void getBuPaRoles() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -64,7 +60,6 @@ public class TestAssociations {
     assertNotNull(role);
   }
 
-  @Disabled
   @Test
   public void getBuPaLocation() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -77,7 +72,6 @@ public class TestAssociations {
     assertNotNull(act);
   }
 
-  @Disabled
   @Test
   public void getRoleBuPa() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -90,7 +84,6 @@ public class TestAssociations {
     assertNotNull(bp);
   }
 
-  @Disabled
   @Test
   public void getBuPaCountryName() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -103,7 +96,6 @@ public class TestAssociations {
     assertNotNull(region);
   }
 
-  @Disabled
   @Test
   public void getBuPaRegionName() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -116,7 +108,6 @@ public class TestAssociations {
     assertNotNull(region);
   }
 
-  @Disabled
   @Test
   public void getAdministrativeDivisionParent() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -129,7 +120,6 @@ public class TestAssociations {
     assertNotNull(act);
   }
 
-  @Disabled
   @Test
   public void getAdministrativeDivisionOneParent() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -150,7 +140,6 @@ public class TestAssociations {
     assertEquals("BE25", act.getDivisionCode());
   }
 
-  @Disabled
   @Test
   public void getAdministrativeDivisionChildrenOfOneParent() {
     CriteriaQuery<Tuple> cq = cb.createTupleQuery();

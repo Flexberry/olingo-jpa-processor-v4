@@ -20,7 +20,6 @@ import javax.sql.DataSource;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
@@ -32,7 +31,6 @@ public class TestFunctionsHSQLDB {
   private static EntityManagerFactory emf;
   private static DataSource ds;
 
-  @Disabled
   @BeforeAll
   public static void setupClass() {
 
@@ -48,14 +46,12 @@ public class TestFunctionsHSQLDB {
 
   private CriteriaBuilder cb;
 
-  @Disabled
   @BeforeEach
   public void setup() {
     em = emf.createEntityManager();
     cb = em.getCriteriaBuilder();
   }
 
-  @Disabled
   // @Ignore
   @Test
   public void TestScalarFunctionsWhere() {

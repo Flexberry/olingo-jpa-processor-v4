@@ -11,7 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionKey;
@@ -29,7 +28,6 @@ public class TestEqualHashCodeMethodsTestModel extends TestEqualHashCodeMethods 
   private static final String PUNIT_NAME = "com.sap.olingo.jpa";
   private static final String ENTITY_MANAGER_DATA_SOURCE = "javax.persistence.nonJtaDataSource";
 
-  @Disabled
   @BeforeAll
   public static void setupClass() {
     Map<String, Object> properties = new HashMap<>();
@@ -39,7 +37,6 @@ public class TestEqualHashCodeMethodsTestModel extends TestEqualHashCodeMethods 
     model = emf.getMetamodel();
   }
 
-  @Disabled
   @Test
   public void testBusinessPartnerRoleKeyEqual() {
     final BusinessPartnerRoleKey cut = new BusinessPartnerRoleKey("12", "A");
@@ -53,7 +50,6 @@ public class TestEqualHashCodeMethodsTestModel extends TestEqualHashCodeMethods 
     assertFalse(new BusinessPartnerRoleKey(null, "A").equals(cut));
   }
 
-  @Disabled
   @Test
   public void testInstanceRestrictionKeyEqual() {
     final InstanceRestrictionKey cut = new InstanceRestrictionKey("12", 1);
@@ -67,7 +63,6 @@ public class TestEqualHashCodeMethodsTestModel extends TestEqualHashCodeMethods 
     assertFalse(new InstanceRestrictionKey("12", null).equals(cut));
   }
 
-  @Disabled
   @Test
   public void testMembershipKeyEqual() {
     final MembershipKey cut = new MembershipKey("12", "A");
@@ -81,7 +76,6 @@ public class TestEqualHashCodeMethodsTestModel extends TestEqualHashCodeMethods 
     assertFalse(new MembershipKey("12", null).equals(cut));
   }
 
-  @Disabled
   @Test
   public void testAdministrativeDivisionKeyCompareTo() {
     final AdministrativeDivisionKey cut = new AdministrativeDivisionKey("B", "B", "B");
