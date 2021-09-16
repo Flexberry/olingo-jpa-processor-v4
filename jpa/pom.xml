@@ -3,7 +3,7 @@
 
 	<groupId>net.flexberry</groupId>
 	<artifactId>odata-jpa</artifactId>
-	<version>0.3.10-SNAPSHOT</version>
+	<version>0.3.9</version>
 	<packaging>pom</packaging>
 
 	<name>odata-jpa</name>
@@ -139,7 +139,7 @@
 					<plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven.gpg.plugin.version}</version>
+                        <version>1.5</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -153,7 +153,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven.source.plugin.version}</version>
+                        <version>2.2.1</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -166,7 +166,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven.javadoc.plugin.version}</version>
+                        <version>2.9.1</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -179,7 +179,7 @@
 					<plugin>
 					  <groupId>org.sonatype.plugins</groupId>
 					  <artifactId>nexus-staging-maven-plugin</artifactId>
-					  <version>${nexus.staging.maven.plugin.version}</version>
+					  <version>1.6.7</version>
 					  <extensions>true</extensions>
 					  <configuration>
 						 <serverId>ossrh</serverId>
