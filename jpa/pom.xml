@@ -3,7 +3,7 @@
 
 	<groupId>net.flexberry</groupId>
 	<artifactId>odata-jpa</artifactId>
-	<version>0.3.10-SNAPSHOT</version>
+	<version>0.3.9</version>
 	<packaging>pom</packaging>
 
 	<name>odata-jpa</name>
@@ -175,27 +175,21 @@
                                 </goals>
                             </execution>
                         </executions>
+						<configuration>
+							<source>8</source>
+							<detectJavaApiLink>false</detectJavaApiLink>
+							<additionalJOption>-Xdoclint:none</additionalJOption>
+						</configuration>
                     </plugin>
 					<plugin>
 					  <groupId>org.sonatype.plugins</groupId>
 					  <artifactId>nexus-staging-maven-plugin</artifactId>
-					  <version>1.6.7</version>
+					  <version>1.6.8</version>
 					  <extensions>true</extensions>
 					  <configuration>
 						 <serverId>ossrh</serverId>
 						 <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 						 <autoReleaseAfterClose>true</autoReleaseAfterClose>
-					  </configuration>
-					</plugin>
-					<plugin>
-					  <groupId>org.apache.maven.plugins</groupId>
-					  <artifactId>maven-release-plugin</artifactId>
-					  <version>2.5.3</version>
-					  <configuration>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<useReleaseProfile>false</useReleaseProfile>
-						<releaseProfiles>release</releaseProfiles>
-						<goals>deploy</goals>
 					  </configuration>
 					</plugin>
                 </plugins>
@@ -228,15 +222,20 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven.complier.version}</version>
+					<version>3.7.0</version>
 					<configuration>
-						<source>${project.build.source}</source>
-						<target>${project.build.source}</target>
+						<source>1.9</source>
+						<target>1.9</target>
 						<showWarnings>true</showWarnings>
 						<showDeprecation>true</showDeprecation>
 						<compilerArgument>-Xlint:unchecked</compilerArgument>
 						<encoding>${project.build.sourceEncoding}</encoding>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
