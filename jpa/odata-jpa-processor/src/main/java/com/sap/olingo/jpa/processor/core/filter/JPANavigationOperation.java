@@ -34,10 +34,10 @@ import org.apache.olingo.server.api.uri.queryoption.expression.MethodKind;
 import org.apache.olingo.server.api.uri.queryoption.expression.VisitableExpression;
 
 import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
+import com.sap.olingo.jpa.processor.core.query.JPAAbstractSubQuery;
 import com.sap.olingo.jpa.processor.core.query.JPACollectionFilterQuery;
 import com.sap.olingo.jpa.processor.core.query.JPANavigationFilterQuery;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationProptertyInfo;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationQuery;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationPropertyInfo;
 
 /**
  * In case the query result shall be filtered on an attribute of navigation target a sub-select will be generated.<p>
@@ -118,25 +118,25 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     allUriResourceParts.addAll(jpaMember.getMember().getResourcePath().getUriResourceParts());
 
     // 1. Determine all relevant associations
-    final List<JPANavigationProptertyInfo> naviPathList = determineAssoziations(sd, allUriResourceParts);
+    final List<JPANavigationPropertyInfo> naviPathList = determineAssociations(sd, allUriResourceParts);
     JPAAbstractQuery parent = root;
-    final List<JPANavigationQuery> queryList = new ArrayList<>();
+    final List<JPAAbstractSubQuery> queryList = new ArrayList<>();
 
     // 2. Create the queries and roots
     for (int i = naviPathList.size() - 1; i >= 0; i--) {
-      final JPANavigationProptertyInfo naviInfo = naviPathList.get(i);
+      final JPANavigationPropertyInfo naviInfo = naviPathList.get(i);
       if (i == 0) {
         final VisitableExpression expression = createExpression();
-        if (naviInfo.getUriResiource() instanceof UriResourceProperty) {
+        if (naviInfo.getUriResource() instanceof UriResourceProperty) {
           queryList.add(new JPACollectionFilterQuery(odata, sd, em, parent, naviInfo.getAssociationPath(), expression,
               determineFrom(i, naviPathList.size(), parent), groups));
         } else {
-          queryList.add(new JPANavigationFilterQuery(odata, sd, naviInfo.getUriResiource(), parent, em, naviInfo
+          queryList.add(new JPANavigationFilterQuery(odata, sd, naviInfo.getUriResource(), parent, em, naviInfo
               .getAssociationPath(), expression, determineFrom(i, naviPathList.size(), parent), claimsProvider,
               groups));
         }
       } else {
-        queryList.add(new JPANavigationFilterQuery(odata, sd, naviInfo.getUriResiource(), parent, em, naviInfo
+        queryList.add(new JPANavigationFilterQuery(odata, sd, naviInfo.getUriResource(), parent, em, naviInfo
             .getAssociationPath(), determineFrom(i, naviPathList.size(), parent), claimsProvider));
       }
       parent = queryList.get(queryList.size() - 1);
@@ -144,9 +144,13 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     // 3. Create select statements
     Subquery<?> childQuery = null;
     for (int i = queryList.size() - 1; i >= 0; i--) {
-      childQuery = queryList.get(i).getSubQueryExists(childQuery);
+      childQuery = queryList.get(i).getSubQuery(childQuery);
     }
     return childQuery;
+  }
+
+  Member getMember() {
+    return new SubMember(jpaMember);
   }
 
   private VisitableExpression createExpression() {
@@ -163,14 +167,14 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     }
   }
 
-  private From<?, ?> determineFrom(int i, int size, JPAAbstractQuery parent) {
+  private From<?, ?> determineFrom(final int i, final int size, final JPAAbstractQuery parent) {
     return i == size - 1 ? from : parent.getRoot();
   }
 
-  private class SubMember implements Member {
+  private static class SubMember implements Member {
     private final JPAMemberOperator parentMember;
 
-    public SubMember(final JPAMemberOperator parentMember) {
+    SubMember(final JPAMemberOperator parentMember) {
       super();
       this.parentMember = parentMember;
     }
@@ -202,7 +206,7 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
 
   }
 
-  private class SubResource implements UriInfoResource {
+  private static class SubResource implements UriInfoResource {
     private final JPAMemberOperator parentMember;
 
     public SubResource(final JPAMemberOperator member) {

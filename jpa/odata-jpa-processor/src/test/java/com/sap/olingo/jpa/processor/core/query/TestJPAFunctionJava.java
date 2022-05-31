@@ -40,19 +40,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.processor.JPAFunctionRequestProcessor;
 import com.sap.olingo.jpa.processor.core.serializer.JPAOperationSerializer;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import com.sap.olingo.jpa.processor.core.testobjects.TestFunctionParameter;
 
-public class TestJPAFunctionJava {
+class TestJPAFunctionJava {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
   private JPAFunctionRequestProcessor cut;
   private OData odata;
-  private JPAODataCRUDContextAccess context;
   private JPAODataRequestContextAccess requestContext;
   private UriInfo uriInfo;
   private List<UriResource> uriResources;
@@ -64,22 +62,21 @@ public class TestJPAFunctionJava {
   private SerializerResult serializerResult;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  void setup() throws ODataException {
     odata = mock(OData.class);
-    context = mock(JPAODataCRUDContextAccess.class);
     requestContext = mock(JPAODataRequestContextAccess.class);
-    EntityManager em = mock(EntityManager.class);
+    final EntityManager em = mock(EntityManager.class);
     uriInfo = mock(UriInfo.class);
     serializer = mock(JPAOperationSerializer.class);
     serializerResult = mock(SerializerResult.class);
 
-    DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
-    Map<String, Object> properties = new HashMap<>();
+    final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
+    final Map<String, Object> properties = new HashMap<>();
     properties.put("javax.persistence.nonJtaDataSource", ds);
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
     uriResources = new ArrayList<>();
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);
-    when(context.getEdmProvider()).thenReturn(new JPAEdmProvider(PUNIT_NAME, emf, null, new String[] {
+    when(requestContext.getEdmProvider()).thenReturn(new JPAEdmProvider(PUNIT_NAME, emf, null, new String[] {
         "com.sap.olingo.jpa.processor.core", "com.sap.olingo.jpa.processor.core.testmodel" }));
     when(requestContext.getUriInfo()).thenReturn(uriInfo);
     when(requestContext.getEntityManager()).thenReturn(em);
@@ -94,22 +91,22 @@ public class TestJPAFunctionJava {
     uriResources.add(uriResource);
     when(uriResource.getFunction()).thenReturn(edmFunction);
 
-    cut = new JPAFunctionRequestProcessor(odata, context, requestContext);
+    cut = new JPAFunctionRequestProcessor(odata, requestContext);
   }
 
   @AfterEach
-  public void teardown() {
+  void teardown() {
     TestFunctionParameter.calls = 0;
     TestFunctionParameter.param1 = 0;
     TestFunctionParameter.param2 = 0;
   }
 
   @Test
-  public void testCallsFunction() throws ODataApplicationException, ODataLibraryException {
-    EdmParameter edmParamA = mock(EdmParameter.class);
-    EdmParameter edmParamB = mock(EdmParameter.class);
-    EdmReturnType edmReturn = mock(EdmReturnType.class);
-    EdmType edmType = mock(EdmType.class);
+  void testCallsFunction() throws ODataApplicationException, ODataLibraryException {
+    final EdmParameter edmParamA = mock(EdmParameter.class);
+    final EdmParameter edmParamB = mock(EdmParameter.class);
+    final EdmReturnType edmReturn = mock(EdmReturnType.class);
+    final EdmType edmType = mock(EdmType.class);
 
     when(edmFunction.getReturnType()).thenReturn(edmReturn);
     when(edmFunction.getName()).thenReturn("Sum");
@@ -118,7 +115,7 @@ public class TestJPAFunctionJava {
     when(edmParamA.getType()).thenReturn(new EdmInt32());
     when(edmFunction.getParameter("B")).thenReturn(edmParamB);
     when(edmParamB.getType()).thenReturn(new EdmInt32());
-    List<UriParameter> parameterList = buildParameters();
+    final List<UriParameter> parameterList = buildParameters();
     when(uriResource.getParameters()).thenReturn(parameterList);
     when(edmReturn.getType()).thenReturn(edmType);
     when(edmType.getKind()).thenReturn(EdmTypeKind.PRIMITIVE);
@@ -128,11 +125,11 @@ public class TestJPAFunctionJava {
   }
 
   @Test
-  public void testProvidesParameter() throws ODataApplicationException, ODataLibraryException {
-    EdmParameter edmParamA = mock(EdmParameter.class);
-    EdmParameter edmParamB = mock(EdmParameter.class);
-    EdmReturnType edmReturn = mock(EdmReturnType.class);
-    EdmType edmType = mock(EdmType.class);
+  void testProvidesParameter() throws ODataApplicationException, ODataLibraryException {
+    final EdmParameter edmParamA = mock(EdmParameter.class);
+    final EdmParameter edmParamB = mock(EdmParameter.class);
+    final EdmReturnType edmReturn = mock(EdmReturnType.class);
+    final EdmType edmType = mock(EdmType.class);
 
     when(edmFunction.getReturnType()).thenReturn(edmReturn);
     when(edmFunction.getName()).thenReturn("Sum");
@@ -141,7 +138,7 @@ public class TestJPAFunctionJava {
     when(edmParamA.getType()).thenReturn(new EdmInt32());
     when(edmFunction.getParameter("B")).thenReturn(edmParamB);
     when(edmParamB.getType()).thenReturn(new EdmInt32());
-    List<UriParameter> parameterList = buildParameters();
+    final List<UriParameter> parameterList = buildParameters();
     when(uriResource.getParameters()).thenReturn(parameterList);
     when(edmReturn.getType()).thenReturn(edmType);
     when(edmType.getKind()).thenReturn(EdmTypeKind.PRIMITIVE);
@@ -152,12 +149,12 @@ public class TestJPAFunctionJava {
   }
 
   private List<UriParameter> buildParameters() {
-    UriParameter param1 = mock(UriParameter.class);
-    UriParameter param2 = mock(UriParameter.class);
+    final UriParameter param1 = mock(UriParameter.class);
+    final UriParameter param2 = mock(UriParameter.class);
     when(param1.getName()).thenReturn("A");
     when(param1.getText()).thenReturn("5");
     when(param2.getName()).thenReturn("B");
     when(param2.getText()).thenReturn("7");
-    return Arrays.asList(new UriParameter[] { param1, param2 });
+    return Arrays.asList(param1, param2);
   }
 }

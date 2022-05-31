@@ -26,7 +26,6 @@ import org.apache.olingo.server.api.uri.UriHelper;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOperation;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.converter.JPAComplexResultConverter;
 import com.sap.olingo.jpa.processor.core.converter.JPAEntityResultConverter;
@@ -38,37 +37,37 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
 
   private static final String RESULT = "Result";
 
-  public JPAOperationRequestProcessor(OData odata, JPAODataCRUDContextAccess context,
-      JPAODataRequestContextAccess requestContext) throws ODataException {
-    super(odata, context, requestContext);
+  JPAOperationRequestProcessor(final OData odata, final JPAODataRequestContextAccess requestContext)
+      throws ODataException {
+    super(odata, requestContext);
   }
 
   protected Annotatable convertResult(final Object result, final EdmType returnType,
       final JPAOperation jpaOperation) throws ODataApplicationException {
 
     switch (returnType.getKind()) {
-    case PRIMITIVE:
-      if (jpaOperation.getResultParameter().isCollection()) {
-        final List<Object> response = new ArrayList<>();
-        response.addAll((Collection<?>) result);
-        return new Property(null, RESULT, ValueType.COLLECTION_PRIMITIVE, response);
-      } else if (result == null) {
-        return null;
-      }
-      return new Property(null, RESULT, ValueType.PRIMITIVE, result);
-    case ENTITY:
-      return createEntityCollection((EdmEntityType) returnType, result, odata.createUriHelper(), jpaOperation);
-    case COMPLEX:
-      if (jpaOperation.getResultParameter().isCollection()) {
-        return new Property(null, RESULT, ValueType.COLLECTION_COMPLEX, createComplexCollection(
-            (EdmComplexType) returnType, result));
-      } else if (result == null) {
-        return null;
-      }
-      return new Property(null, RESULT, ValueType.COMPLEX, createComplexValue((EdmComplexType) returnType,
-          result));
-    default:
-      break;
+      case PRIMITIVE:
+        if (jpaOperation.getResultParameter().isCollection()) {
+          final List<Object> response = new ArrayList<>();
+          response.addAll((Collection<?>) result);
+          return new Property(null, RESULT, ValueType.COLLECTION_PRIMITIVE, response);
+        } else if (result == null) {
+          return null;
+        }
+        return new Property(null, RESULT, ValueType.PRIMITIVE, result);
+      case ENTITY:
+        return createEntityCollection((EdmEntityType) returnType, result, odata.createUriHelper(), jpaOperation);
+      case COMPLEX:
+        if (jpaOperation.getResultParameter().isCollection()) {
+          return new Property(null, RESULT, ValueType.COLLECTION_COMPLEX, createComplexCollection(
+              (EdmComplexType) returnType, result));
+        } else if (result == null) {
+          return null;
+        }
+        return new Property(null, RESULT, ValueType.COMPLEX, createComplexValue((EdmComplexType) returnType,
+            result));
+      default:
+        break;
     }
     return null;
   }
@@ -101,8 +100,8 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  private EntityCollection createEntityCollection(final EdmEntityType returnType, Object result,
-      UriHelper createUriHelper, final JPAOperation jpaFunction)
+  private EntityCollection createEntityCollection(final EdmEntityType returnType, final Object result,
+      final UriHelper createUriHelper, final JPAOperation jpaFunction)
       throws ODataApplicationException {
 
     final List resultList = new ArrayList();
@@ -129,7 +128,7 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
 
       final SerializerResult serializerResult = ((JPAOperationSerializer) serializer).serialize(result, returnType,
           request);
-      createSuccessResponce(response, responseFormat, serializerResult);
+      createSuccessResponse(response, responseFormat, serializerResult);
     } else {
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     }
